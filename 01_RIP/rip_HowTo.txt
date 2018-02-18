@@ -1,0 +1,71 @@
+Ратков Максим
+(n = 14)
+
+Router 1:
+	enable
+	configure terminal
+	interface fastEthernet 0/0
+	ip address 192.168.10.1 255.255.255.252
+	no shutdown
+	exit
+	interface fastEthernet 0/1
+	ip address 10.14.1.1 255.255.255.0
+	no shutdown
+	exit
+	interface fastEthernet 1/0
+	ip address 192.168.1.1 255.255.255.0
+	no shutdown
+	exit
+	router rip
+	network 10.14.1.0
+	network 192.168.1.0
+	network 192.168.10.0
+	exit
+	exit
+	write memory
+
+Router 2:
+	enable
+	configure terminal
+	interface fastEthernet 0/0
+	ip address 192.168.10.2 255.255.255.252
+	no shutdown
+	exit
+	interface fastEthernet 0/1
+	ip address 192.168.10.6 255.255.255.252
+	no shutdown
+	exit
+	interface fastEthernet 1/0
+	ip address 192.168.2.1 255.255.255.0
+	no shutdown
+	exit
+	router rip
+	network 192.168.10.0
+	network 192.168.10.4
+	network 192.168.2.0
+	exit
+	exit
+	write memory
+
+Router 3:
+	enable
+	configure terminal
+	interface fastEthernet 0/0
+	ip address 10.14.1.2 255.255.255.0
+	no shutdown
+	exit
+	interface fastEthernet 0/1
+	ip address 192.168.10.5 255.255.255.252
+	no shutdown
+	exit
+	interface fastEthernet 1/0
+	ip address 192.168.3.1 255.255.255.0
+	no shutdown
+	exit
+	router rip
+	network 10.14.1.0
+	network 192.168.10.4
+	network 192.168.3.0
+	exit
+	exit
+	write memory
